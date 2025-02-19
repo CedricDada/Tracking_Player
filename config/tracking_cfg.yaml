@@ -1,0 +1,42 @@
+models:
+  yolo: "models/yolo11n.pt"
+  siamese: "models/siamese_resnet.pt"
+
+sam:
+  checkpoint: "/media/cedric/DSCD/Projets/ENSTA/Tracking_Player/detection/sam2_hiera_large.pt"
+  config_dir: "/media/cedric/DSCD/Projets/ENSTA/Tracking_Player/detection/configs"
+  model_cfg: "sam2.1_hiera_l.yaml"
+  propagation_window: 10
+  resize_resolution: [1024, 1024]
+
+tracking:
+  max_age: 30
+  n_init: 3
+  confidence_threshold: 0.8
+  iou_threshold: 0.3
+  min_box_area: 100
+  max_box_area: 500000
+
+optimization:
+  use_onnx: True
+  tensorrt_batch_size: 8
+  use_cuda: True
+  half_precision: False
+
+video:
+  input_path: "data/input.mp4"
+  output_path: "results/output.mp4"
+  roi_resolution: [640, 360]
+  frame_skip: 0
+  start_frame: 0
+  end_frame: null
+
+metrics:
+  mot_challenge_dataset: "data/MOT16"
+  save_metrics: True
+  metrics_output_path: "results/metrics.json"
+
+debug:
+  save_intermediate: False
+  visualization: True
+  log_level: "INFO"
